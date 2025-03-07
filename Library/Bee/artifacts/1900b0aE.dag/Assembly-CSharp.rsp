@@ -356,6 +356,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Old scripts/Enemy Sensor.cs"
 "Assets/Old scripts/Player Movement.cs"
+"Assets/scripts/Camera Control.cs"
+"Assets/scripts/Camera Rotation.cs"
 -langversion:9.0
 
 /deterministic
