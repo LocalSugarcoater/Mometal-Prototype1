@@ -7,9 +7,14 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float PlayerSpeed = 6f;
+    float UpDowninput;
+    public bool playercanmove;
+    float LeftRightinput;
     [SerializeField] Rigidbody Playerbody;
     [SerializeField] Transform Enemy;
     [SerializeField] Transform cam;
+    Vector3 forwarddirection;
+    Vector3 rightdirection;
     Quaternion player_rotation;
     Vector3 directiontoenemy;
     public Vector3 direction;
@@ -22,16 +27,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        float UpDowninput = Input.GetAxisRaw("Horizontal");
-        float LeftRightinput = Input.GetAxisRaw("Vertical");
+        UpDowninput = Input.GetAxisRaw("Horizontal");
+        LeftRightinput = Input.GetAxisRaw("Vertical");
 
-        print("Left Right movement" + UpDowninput);
-        print("\nUp down movement" + LeftRightinput);
+        //print("Left Right movement" + UpDowninput);
+        //print("\nUp down movement" + LeftRightinput);
         
         if (Playerbody.velocity.x > 30f)
         {
             UpDowninput = 0;
             LeftRightinput = 0;
+        }
+
+        if (UpDowninput > 0.1f || UpDowninput < -0.1f){
+            LeftRightinput = 0;
+        }
+        if (LeftRightinput > 0.1f || LeftRightinput < -0.1f){
+            UpDowninput = 0;
         }
 
         direction = new Vector3(UpDowninput, 0f, LeftRightinput);
@@ -43,15 +55,17 @@ public class PlayerMovement : MonoBehaviour
 
         player_rotation = Quaternion.LookRotation(directiontoenemy);
         transform.rotation = player_rotation;
+
         if (UpDowninput > 0.1f || UpDowninput < -0.1f){
-            Vector3 forwarddirection = transform.forward;
+            forwarddirection = transform.forward;
             transform.position += forwarddirection * UpDowninput * PlayerSpeed* Time.deltaTime;
         }
         else if (LeftRightinput > 0.1f || LeftRightinput < -0.1f){
-            Vector3 rightdirection = transform.right;
+            rightdirection = transform.right;
             LeftRightinput = LeftRightinput * -1f;
             transform.position += rightdirection * LeftRightinput * PlayerSpeed* Time.deltaTime;
         }
+
         /*if (direction.magnitude >= 0.1f){
             Vector3 movedirection = Quaternion.Euler(0f, targetangle, 0f) * Vector3.forward;
             
