@@ -29,8 +29,6 @@ public class Animation_Control : MonoBehaviour
         directionx = Input.GetAxisRaw("Horizontal");
         directiony = Input.GetAxisRaw("Vertical");
 
-        Playermoving = playerscript.direction.magnitude > 0.1f;
-
         if (playerscript.direction.magnitude > 0.1f)
         {
             Playermoving = true;

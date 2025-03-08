@@ -359,6 +359,7 @@
 "Assets/Old scripts/Player Movement.cs"
 "Assets/scripts/Camera Control.cs"
 "Assets/scripts/Camera Rotation.cs"
+"Assets/scripts/Player Control Script.cs"
 "Assets/scripts/Ryujax Animation Script.cs"
 -langversion:9.0
 
