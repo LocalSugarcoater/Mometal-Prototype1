@@ -361,6 +361,7 @@
 "Assets/scripts/Camera Rotation.cs"
 "Assets/scripts/Player Control Script.cs"
 "Assets/scripts/Ryujax Animation Script.cs"
+"Assets/scripts/Ryujax Animatior Script.cs"
 -langversion:9.0
 
 /deterministic

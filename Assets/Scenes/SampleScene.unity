@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080027332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a277e410e1040144ab324a0b6cb9c124, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e71d22ef0fcee84795613b22a0fde01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerobject: {fileID: 1982951582}
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 1982951583}
   - component: {fileID: 1982951586}
   - component: {fileID: 1982951585}
-  - component: {fileID: 1982951584}
+  - component: {fileID: 1982951587}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1086,24 +1086,6 @@ Transform:
   - {fileID: 1779175226}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1982951584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982951582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69884c1ea5d56f840bf4a3562c3450b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerSpeed: 6
-  Playerbody: {fileID: 1982951586}
-  Enemy: {fileID: 310416356}
-  cam: {fileID: 963194228}
-  direction: {x: 0, y: 0, z: 0}
-  targetangle: 0
 --- !u!136 &1982951585
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1154,6 +1136,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1982951587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982951582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccc5584d92594445850dd63eaef46fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: 6
+  Playerbody: {fileID: 1982951586}
+  Enemy: {fileID: 310416356}
+  cam: {fileID: 963194228}
+  playermodel: {fileID: 1080027332}
+  playercanmove: 0
+  direction: {x: 0, y: 0, z: 0}
+  targetangle: 0
+  frameinput: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,33 +4,44 @@ using UnityEngine;
 
 public class PlayerControlScript : MonoBehaviour
 {
-        [SerializeField] float PlayerSpeed = 6f;
-    float UpDowninput;
-    public bool playercanmove;
-    float LeftRightinput;
+    [SerializeField] float PlayerSpeed = 6f;
     [SerializeField] Rigidbody Playerbody;
     [SerializeField] Transform Enemy;
     [SerializeField] Transform cam;
+    [SerializeField] GameObject playermodel;
+    float UpDowninput;
+    public bool playercanmove;
+    float LeftRightinput;
     Vector3 forwarddirection;
     Vector3 rightdirection;
     Quaternion player_rotation;
     Vector3 directiontoenemy;
     public Vector3 direction;
     public float targetangle;
+    Animator playeranimator;
+    AnimatorClipInfo[] currentplayeranimationclip;
+    AnimatorStateInfo currentplayeranimationstate;
 
-    int frameinput = 5;
+    public int frameinput = 5;
     // Start is called before the first frame update
     void Start()
     {
+        playeranimator = playermodel.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update() 
     {
         frameinput = 5;
+
+        currentplayeranimationclip = playeranimator.GetCurrentAnimatorClipInfo(0);
+        currentplayeranimationstate = playeranimator.GetCurrentAnimatorStateInfo(0);
+
         UpDowninput = Input.GetAxisRaw("Horizontal");
         LeftRightinput = Input.GetAxisRaw("Vertical");
 
+        //---------------------------------------------------------------------------
+        //Frame by frame input checking
         if (UpDowninput > 0.1f){
             frameinput = 6;
         }
@@ -38,10 +49,10 @@ public class PlayerControlScript : MonoBehaviour
             frameinput = 4;
         }
         if (LeftRightinput > 0.1f){
-            frameinput = 2;
+            frameinput = 8;
         }
         else if (LeftRightinput < -0.1f){
-            frameinput = 8;
+            frameinput = 2;
         }
 
         switch (frameinput)
@@ -63,7 +74,65 @@ public class PlayerControlScript : MonoBehaviour
                     frameinput = 7;
                 }
             break;
+
+            case 2:
+                if (UpDowninput > 0.1f){
+                    frameinput = 3;
+                }
+                else if(UpDowninput < -0.1f){
+                    frameinput = 1;
+                }
+            break;
+
+            case 8:
+                if (UpDowninput > 0.1f){
+                    frameinput = 9;
+                }
+                else if(UpDowninput < -0.1f){
+                    frameinput = 7;
+                }
+            break;
         }
+
+        switch(frameinput)
+        {
+            case 6:
+            LeftRightinput = 0;
+            break;
+
+            case 4:
+            LeftRightinput = 0;
+            break;
+
+            case 2:
+            UpDowninput = 0;
+            break;
+
+            case 8:
+            UpDowninput = 0;
+            break;
+
+            case 3:
+            UpDowninput = 0;
+            LeftRightinput = 0;
+            break;
+
+            case 9:
+            UpDowninput = 0;
+            LeftRightinput = 0;
+            break;
+
+            case 1:
+            UpDowninput = 0;
+            LeftRightinput = 0;
+            break;
+
+            case 7:
+            UpDowninput = 0;
+            LeftRightinput = 0;
+            break;
+        }
+        //---------------------------------------------------------------------------
 
 
         if (Playerbody.velocity.x > 30f)
@@ -72,11 +141,12 @@ public class PlayerControlScript : MonoBehaviour
             LeftRightinput = 0;
         }
 
-        if (UpDowninput > 0.1f || UpDowninput < -0.1f){
-            LeftRightinput = 0;
-        }
-        if (LeftRightinput > 0.1f || LeftRightinput < -0.1f){
+        //print("current frame input" + frameinput);
+        print("current animation is:" + currentplayeranimationclip[0].clip.name);
+        if(currentplayeranimationstate.IsTag("Attack"))
+        {
             UpDowninput = 0;
+            LeftRightinput = 0;
         }
 
         direction = new Vector3(UpDowninput, 0f, LeftRightinput);
